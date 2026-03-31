@@ -1,0 +1,8 @@
+node_modules
+unpackage
+.hbuilderx
+.DS_Store
+
+# dist 产物由 release:prepare 生成，发布到 npm 时需要包含
+# 但不应提交到 git
+dist/

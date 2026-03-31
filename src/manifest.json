@@ -1,0 +1,20 @@
+{
+  "name": "tdesign-uniapp-tree",
+  "appid": "",
+  "description": "tdesign-uniapp-tree 树形选择器演示",
+  "versionName": "2.7.0",
+  "versionCode": "270",
+  "transformPx": false,
+  "mp-weixin": {
+    "appid": "",
+    "setting": {
+      "urlCheck": false
+    },
+    "usingComponents": true
+  },
+  "h5": {
+    "devServer": {
+      "port": 5173
+    }
+  }
+}
