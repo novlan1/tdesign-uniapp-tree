@@ -1,8 +1,8 @@
 <template>
   <tdesign-uniapp-tree
     :use-popup="false"
-    :change-verify="changeVerify"
     :title="getTitle"
+    :max-Checked="4"
     ref="treeRef"
     check-strictly-model="strong"
     :line="true"
