@@ -1,20 +1,20 @@
 <template>
   <view>
-    <t-button theme="primary" block @click="open('common')" variant="outline" size="large">一般模式 common</t-button>
-    <view style="height: 16rpx" />
-    <t-button theme="primary" block @click="open('hierarchy')" variant="outline" size="large">层级关联模式 hierarchy</t-button>
-    <view style="height: 16rpx" />
-    <t-button theme="primary" block @click="open('depHighlight')" variant="outline" size="large">从属高亮模式 depHighlight</t-button>
+    <t-button theme="primary" block @click="openTree" variant="outline" size="large">使用 filter 过滤</t-button>
 
     <tdesign-uniapp-tree
       ref="treeRef"
-      funcMode="radio"
-      :ifSearch="true"
-      :search-model="searchModel"
-      :showAuxiliaryLine="true"
-      :treeData="localTreeData"
+      :line="true"
+      :filter="filterFunc"
+      :data="localTreeData"
       @change="onChange"
-    />
+    >
+      <template #topBar>
+        <view class="search-bar">
+          <t-input v-model:value="keyword" placeholder="输入关键字过滤" clearable @change="onSearchChange" />
+        </view>
+      </template>
+    </tdesign-uniapp-tree>
   </view>
 </template>
 
@@ -24,16 +24,28 @@ import { treeData, cloneTreeData } from '../tree-data';
 export default {
   data() {
     return {
-      searchModel: 'common',
+      keyword: '',
       localTreeData: cloneTreeData(treeData),
     };
   },
+  computed: {
+    filterFunc() {
+      var kw = this.keyword;
+      if (!kw) return null;
+      return function (node) {
+        return (node.label || '').indexOf(kw) !== -1;
+      };
+    },
+  },
   methods: {
-    open(type) {
-      this.searchModel = type;
+    openTree() {
+      this.keyword = '';
       this.$nextTick(() => {
         this.$refs.treeRef.showTree = true;
       });
+    },
+    onSearchChange() {
+      // filter 是响应式计算属性，自动触发组件 computedTreeList 更新
     },
     onChange(checked) {
       console.log('change:', checked);
@@ -41,3 +53,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.search-bar {
+  padding: 12rpx 0;
+}
+</style>

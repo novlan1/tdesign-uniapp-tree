@@ -6,11 +6,10 @@
 
     <tdesign-uniapp-tree
       ref="treeRef"
-      :funcMode="funcMode"
-      :ifSearch="true"
-      searchModel="depHighlight"
-      :showAuxiliaryLine="true"
-      :treeData="localTreeData"
+      :checkable="checkable"
+      :line="true"
+      :data="localTreeData"
+      :expanded="['1']"
       @change="onChange"
       @confirm="onConfirm"
     />
@@ -23,19 +22,19 @@ import { treeData, cloneTreeData } from '../tree-data';
 export default {
   data() {
     return {
-      funcMode: 'radio',
+      checkable: false,
       localTreeData: cloneTreeData(treeData),
     };
   },
   methods: {
     openRadio() {
-      this.funcMode = 'radio';
+      this.checkable = false;
       this.$nextTick(() => {
         this.$refs.treeRef.showTree = true;
       });
     },
     openCheckbox() {
-      this.funcMode = 'checkbox';
+      this.checkable = true;
       this.$nextTick(() => {
         this.$refs.treeRef.showTree = true;
       });

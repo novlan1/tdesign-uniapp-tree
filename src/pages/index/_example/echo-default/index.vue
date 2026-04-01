@@ -4,14 +4,12 @@
 
     <tdesign-uniapp-tree
       ref="treeRef"
-      funcMode="checkbox"
-      :selectParent="true"
-      :checkStrictly="true"
-      checkStrictlyModel="strong"
-      :ifSearch="true"
-      searchModel="depHighlight"
-      :showAuxiliaryLine="true"
-      :treeData="localTreeData"
+      checkable
+      value-mode="all"
+      :check-strictly="true"
+      check-strictly-model="strong"
+      :line="true"
+      :data="localTreeData"
       @confirm="onConfirm"
       @cancel="onCancel"
     />

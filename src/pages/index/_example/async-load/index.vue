@@ -4,15 +4,13 @@
 
     <tdesign-uniapp-tree
       ref="treeRef"
-      :ifSearch="true"
-      search-model="remote"
-      funcMode="radio"
-      :expandedKeys="[]"
+      :expanded="[]"
       :keep-alive="true"
-      :selectParent="false"
-      :checkStrictly="true"
-      :treeData="localAsyncTreeData"
-      :loadData="loadData"
+      value-mode="onlyLeaf"
+      :check-strictly="true"
+      :lazy="true"
+      :data="localAsyncTreeData"
+      :load="loadFunc"
       @change="onChange"
     />
   </view>
@@ -32,7 +30,7 @@ export default {
     openTree() {
       this.$refs.treeRef.showTree = true;
     },
-    loadData(data) {
+    loadFunc(data) {
       var self = this;
       var type = data.$type;
       var source = data.source;
@@ -48,8 +46,6 @@ export default {
             }
           }, 1000);
         });
-      } else if (type === 'remoteSearch') {
-        // remote search implementation
       }
     },
     onChange(checked) {

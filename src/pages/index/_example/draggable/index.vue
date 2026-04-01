@@ -4,13 +4,14 @@
 
     <tdesign-uniapp-tree
       ref="treeRef"
-      funcMode="edit"
+      editable
       :draggable="true"
-      :ifSearch="true"
-      searchModel="depHighlight"
-      :showAuxiliaryLine="true"
-      :treeData="localTreeData"
+      :line="true"
+      :data="localTreeData"
       @change="onChange"
+      @dragstart="onDragStart"
+      @dragend="onDragEnd"
+      @drop="onDrop"
     />
   </view>
 </template>
@@ -30,6 +31,15 @@ export default {
     },
     onChange(checked) {
       console.log('change:', checked);
+    },
+    onDragStart(context) {
+      console.log('dragstart:', context.node);
+    },
+    onDragEnd(context) {
+      console.log('dragend:', context.node);
+    },
+    onDrop(context) {
+      console.log('drop:', context.node, '→', context.target);
     },
   },
 };

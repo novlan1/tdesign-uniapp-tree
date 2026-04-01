@@ -1,18 +1,16 @@
 <template>
   <tdesign-uniapp-tree
-    uiMode="page"
-    :changeVerify="changeVerify"
+    :use-popup="false"
+    :change-verify="changeVerify"
     :title="getTitle"
     ref="treeRef"
-    searchModel="depHighlight"
-    checkStrictlyModel="strong"
-    :showAuxiliaryLine="true"
-    :ifSearch="true"
-    :checkStrictly="true"
-    :selectParent="true"
-    funcMode="checkbox"
-    :treeData="treeData"
-    expandedMode="singe"
+    check-strictly-model="strong"
+    :line="true"
+    :check-strictly="true"
+    value-mode="all"
+    checkable
+    :data="treeData"
+    :expand-mutex="true"
     @cancel="onCancel"
     @confirm="onConfirm"
   >
