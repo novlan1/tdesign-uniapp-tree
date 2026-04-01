@@ -1,6 +1,6 @@
 {
   "name": "tdesign-uniapp-tree",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "tdesign-uniapp-tree 树形选择器组件 - 基于 Vue3 + uni-app，支持多选/单选/搜索/懒加载",
   "author": "",
   "license": "MIT",
@@ -50,7 +50,8 @@
     "build:app": "uni build -p app",
     "release:prepare": "node ./scripts/release-prepare.js",
     "build:npm": "npm run release:prepare",
-    "prepublishOnly": "npm run build:npm"
+    "prepublishOnly": "npm run build:npm",
+    "copy:starter": "node ./scripts/copy-to-starter.js"
   },
   "dependencies": {
     "@tdesign/uniapp": "^0.8.0"

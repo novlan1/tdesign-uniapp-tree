@@ -2,7 +2,7 @@
   <tdesign-uniapp-tree
     :use-popup="false"
     :title="getTitle"
-    :max-Checked="4"
+    :change-verify="changeVerify"
     ref="treeRef"
     check-strictly-model="strong"
     :line="true"
@@ -48,7 +48,8 @@ export default {
     changeVerify(current, chooseList) {
       console.log('当前变化的数据', current);
       console.log('已选择的数据', chooseList);
-      if (chooseList && chooseList.length > 4) {
+      // 只在选中时校验数量，取消时不拦截
+      if (current.checked && chooseList && chooseList.length > 4) {
         return '最多可以选择4个节点';
       }
     },
